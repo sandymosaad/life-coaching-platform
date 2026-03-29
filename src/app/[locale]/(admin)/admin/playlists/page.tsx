@@ -1,10 +1,10 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { getTranslations } from "next-intl/server";
 import { getLocale } from "next-intl/server";
 import { getPlaylists } from "@/features/playlists/services/playlist-service";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { PlaylistAdminList } from "@/features/playlists/components/playlist-admin-list";
+import type { Playlist } from "@/types";
 
 export const dynamic = "force-dynamic";
 
@@ -21,7 +21,7 @@ export default async function AdminPlaylistsPage() {
           <Link href={`/${locale}/admin/playlists/new`}>{t("addPlaylist")}</Link>
         </Button>
       </div>
-      <PlaylistAdminList playlists={playlists as any} locale={locale} />
+      <PlaylistAdminList playlists={playlists as Playlist[]} locale={locale} />
     </div>
   );
 }

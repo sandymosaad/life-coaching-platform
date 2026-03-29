@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { notFound } from "next/navigation";
 import { getTranslations } from "next-intl/server";
 import { getLocale } from "next-intl/server";
@@ -8,6 +7,7 @@ import { VideoCard } from "@/features/videos/components/video-card";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import type { Video } from "@/types";
 
 export const dynamic = "force-dynamic";
 
@@ -74,7 +74,7 @@ export default async function VideoDetailPage({ params }: { params: { id: string
                 <h2 className="text-lg font-semibold mb-4">{t("suggestedVideos")}</h2>
                 <div className="space-y-4">
                   {suggested.map((v) => (
-                    <VideoCard key={v.id} video={v as any} locale={locale} watchLabel={t("watchVideo")} />
+                    <VideoCard key={v.id} video={v as Video} locale={locale} watchLabel={t("watchVideo")} />
                   ))}
                 </div>
               </>

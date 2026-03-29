@@ -1,10 +1,10 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { getTranslations } from "next-intl/server";
 import { getLocale } from "next-intl/server";
 import { getPlaylists } from "@/features/playlists/services/playlist-service";
 import { getVideos } from "@/features/videos/services/video-service";
 import { PlaylistCard } from "@/features/playlists/components/playlist-card";
 import { VideoCard } from "@/features/videos/components/video-card";
+import type { Playlist, Video } from "@/types";
 
 export const dynamic = "force-dynamic";
 
@@ -36,10 +36,10 @@ export default async function VideosPage({
               {playlists.map((playlist) => (
                 <PlaylistCard
                   key={playlist.id}
-                  playlist={playlist as any}
+                  playlist={playlist as Playlist}
                   locale={locale}
                   startLabel={t("startSeries")}
-                  videosCount={(playlist as any)._count?.videos}
+                  videosCount={playlist._count?.videos}
                 />
               ))}
             </div>
@@ -53,7 +53,7 @@ export default async function VideosPage({
               {videos.map((video) => (
                 <VideoCard
                   key={video.id}
-                  video={video as any}
+                  video={video as Video}
                   locale={locale}
                   watchLabel={t("watchVideo")}
                 />

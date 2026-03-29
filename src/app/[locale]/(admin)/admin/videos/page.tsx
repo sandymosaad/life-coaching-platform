@@ -1,10 +1,10 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { getTranslations } from "next-intl/server";
 import { getLocale } from "next-intl/server";
 import { getVideos } from "@/features/videos/services/video-service";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { VideoAdminList } from "@/features/videos/components/video-admin-list";
+import type { Video } from "@/types";
 
 export const dynamic = "force-dynamic";
 
@@ -21,7 +21,7 @@ export default async function AdminVideosPage() {
           <Link href={`/${locale}/admin/videos/new`}>{t("addVideo")}</Link>
         </Button>
       </div>
-      <VideoAdminList videos={videos as any} locale={locale} />
+      <VideoAdminList videos={videos as Video[]} locale={locale} />
     </div>
   );
 }
